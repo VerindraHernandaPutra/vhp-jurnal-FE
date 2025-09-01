@@ -74,3 +74,6 @@ File: Main Css File
 // pages
 @import "custom/pages/docs";
 @import "custom/pages/portfolio";
+
+@import "@/assets/scss/custom/_hero-override.scss";
+@import "@/assets/scss/custom/_navbar-override.scss";
