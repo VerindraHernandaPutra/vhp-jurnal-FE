@@ -1,0 +1,31 @@
+import {Col, Container, Row} from "solid-bootstrap";
+
+const Hero = () => {
+    return (
+        <section class="hero-4 pt-lg-6 pb-sm-9 pb-6 pt-9">
+            <Container>
+                <Row class="justify-content-center">
+                    <Col lg={7} class="text-center">
+                        <h1 class="hero-title mb-0">Contact Us</h1>
+                        <p class="mb-4 fs-17 text-muted">Please fill out the following form and we will get back to
+                            you shortly</p>
+                    </Col>
+                </Row>
+            </Container>
+            <div class="shape bottom">
+                <svg width="1440px" height="40px" viewBox="0 0 1440 40" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                     xmlns:xlink="http://www.w3.org/1999/xlink">
+                    <g id="shape-b" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                        <g id="curve" fill="#fff">
+                            <path
+                                d="M0,30.013 C239.659,10.004 479.143,0 718.453,0 C957.763,0 1198.28,10.004 1440,30.013 L1440,40 L0,40 L0,30.013 Z"
+                                id="Path"></path>
+                        </g>
+                    </g>
+                </svg>
+            </div>
+        </section>
+    )
+}
+
+export default Hero

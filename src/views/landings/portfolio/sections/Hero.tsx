@@ -1,0 +1,41 @@
+import {Col, Container, Row} from "solid-bootstrap";
+
+import portfolio1 from "@/assets/images/hero/portfolio1.png"
+
+const Hero = () => {
+    return (
+        <section class="hero-3 pt-7 position-relative hero-with-shapes">
+            <div class="shape1"></div>
+            <div class="shape2"></div>
+            <div class="shape3"></div>
+
+            <Container class="hero-container">
+                <Row>
+                    <Col lg={6} data-aos="fade-right" data-aos-duration="1000">
+                        <h4 class="mt-4 pt-2"><span>Hola!</span> I am Greeva N.</h4>
+
+                        <h1 class="hero-title">I'm a freelance UX/UI Designer.</h1>
+                        <p class="mt-3 fs-16 text-secondary">
+                            A top-notch web designer helping business to craft their meaningful and interactive product
+                            experiences
+                        </p>
+
+                        <div class="pt-3 pt-sm-5">
+                            <a href="#contact-me-form" class="btn btn-danger" data-toggle="smooth-scroll">Hire
+                                Me</a>
+                            <a href="#" class="btn btn-outline-danger ms-2">Download CV</a>
+                        </div>
+                    </Col>
+                    <Col lg={5} class="offset-lg-1">
+                        <div class="img-container text-center text-lg-end" data-aos="fade-up"
+                             data-aos-duration="500">
+                            <img src={portfolio1} class="img-fluid" alt=""/>
+                        </div>
+                    </Col>
+                </Row>
+            </Container>
+        </section>
+    )
+}
+
+export default Hero;
