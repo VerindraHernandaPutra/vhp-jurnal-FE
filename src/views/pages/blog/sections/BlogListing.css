@@ -1,0 +1,30 @@
+/* src/views/pages/blog/sections/BlogListing.css */
+
+.filter-menu {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.filter-menu-item {
+  background-color: var(--bs-light);
+  border: 1px solid var(--bs-gray-300);
+  color: var(--bs-gray-700);
+  padding: 0.5rem 1.25rem;
+  border-radius: 999px;
+  font-weight: 500;
+  transition: all 0.2s ease-in-out;
+  cursor: pointer;
+}
+
+.filter-menu-item:hover {
+  background-color: var(--bs-gray-300);
+  border-color: var(--bs-gray-400);
+}
+
+.filter-menu-item.active {
+  background-color: var(--bs-primary);
+  border-color: var(--bs-primary);
+  color: white;
+}

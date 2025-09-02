@@ -1,40 +1,34 @@
-// src/views/home/index.jsx
+// src/views/home/index.tsx
+import { Component } from 'solid-js';
 import PageMeta from '@/components/PageMeta';
 import NavBar from '@/components/NavBar';
-import Hero from '@/views/home/sections/Hero';
+import Hero from './sections/Hero';
 import FeaturedPost from './sections/FeaturedPost';
-import LatestPosts from '@/views/home/sections/LatestPosts';
+import LatestPosts from './sections/LatestPosts';
 import Categories from './sections/Categories';
-import AboutPreview from './sections/AboutPreview'; // Import the new section
+import AboutPreview from './sections/AboutPreview';
 import QuoteSection from './sections/QuoteSection';
 import FooterCTA from './sections/FooterCTA';
-import Footer from '@/views/home/sections/Footer';
+import Footer from './sections/Footer';
 import BackToTop from '@/components/BackToTop';
 
-const HomePage = () => {
+const HomePage: Component = () => {
   return (
     <>
       <PageMeta title="Verindra HP | Personal Blog & Journal" />
 
       <div class="bg-gradient3">
-        <NavBar linkContainerClass="mx-auto" buttonClass="btn-outline-primary" />
+        <NavBar linkContainerClass="mx-auto" />
         <Hero />
       </div>
       
       <FeaturedPost />
-
       <LatestPosts />
-
       <Categories />
-
-      <AboutPreview /> {/* Add the new section here */}
-
+      <AboutPreview />
       <QuoteSection />
-
       <FooterCTA />
-
       <Footer />
-
       <BackToTop />
     </>
   );

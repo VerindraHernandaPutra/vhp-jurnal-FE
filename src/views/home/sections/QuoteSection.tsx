@@ -1,12 +1,12 @@
-// src/views/home/sections/QuoteSection.jsx
+// src/views/home/sections/QuoteSection.tsx
+import { Component } from 'solid-js';
 import { Container, Row, Col } from 'solid-bootstrap';
 import CustomJarallax from '@/components/CustomJarallax';
 import './QuoteSection.css';
-
-// You'll want to replace this with a real, high-quality image in your assets.
 import quoteBgImage from '../../../assets/images/hero/coworking2.jpg';
 
-const QuoteSection = () => {
+const QuoteSection: Component = () => {
+  // ... component JSX remains the same
   return (
     <CustomJarallax options={{ speed: 0.2 }}>
       <section class="quote-section jarallax" style={{ "background-image": `url(${quoteBgImage})` }}>

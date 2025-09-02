@@ -1,9 +1,25 @@
-// src/data/mockPosts.js
-
+// src/data/mockPosts.ts
 import postImage1 from '../assets/images/blog/post1.jpg';
 import postImage2 from '../assets/images/blog/crypto1.jpg';
 import postImage3 from '../assets/images/blog/post3.jpg';
 import authorImage from '../assets/images/avatars/img-4.jpg';
+
+export type PostType = {
+  id: number;
+  image: string;
+  category: string;
+  variant: string;
+  publishedAt: string;
+  readTime: string;
+  title: string;
+  excerpt: string;
+  author: {
+    name: string;
+    image: string;
+  };
+  url: string;
+  isFeatured?: boolean;
+};
 
 export const latestPosts = [
   {

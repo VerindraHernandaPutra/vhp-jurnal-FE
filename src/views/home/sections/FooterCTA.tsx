@@ -1,10 +1,12 @@
-// src/views/home/sections/FooterCTA.jsx
+// src/views/home/sections/FooterCTA.tsx
+import { Component } from 'solid-js';
 import { Container, Row, Col, Button } from 'solid-bootstrap';
 import { A } from '@solidjs/router';
 import { FiArrowRight } from 'solid-icons/fi';
 import './FooterCTA.css';
 
-const FooterCTA = () => {
+const FooterCTA: Component = () => {
+  // ... component JSX remains the same
   return (
     <section class="footer-cta-section py-6 bg-gradient2 position-relative">
        <div class="divider top d-none d-sm-block"></div>

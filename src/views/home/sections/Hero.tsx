@@ -1,6 +1,8 @@
+// src/views/home/sections/Hero.jsx
 import { Component } from "solid-js";
 import { Col, Container, Row } from "solid-bootstrap";
-import { FiArrowDown } from "solid-icons/fi";
+import { A } from '@solidjs/router'; // Import the A component for client-side routing
+import { FiArrowRight } from "solid-icons/fi"; // Swapped icon for better "go forward" affordance
 import CustomTyped from "@/components/CustomTyped";
 import heroBg from "@/assets/images/hero/homepage_hero_section_background2.jpg";
 
@@ -32,10 +34,11 @@ const Hero: Component = () => {
             </p>
 
             <div class="pt-4">
-              <a href="#blogs" class="btn btn-primary">
-                Explore My Journal
-                <FiArrowDown class="ms-2 icon-xxs" />
-              </a>
+              {/* UPDATED: This link now points to the /blog page */}
+              <A href="/blog" class="btn btn-primary">
+                Explore the Journal
+                <FiArrowRight class="ms-2 icon-xxs" />
+              </A>
             </div>
           </Col>
         </Row>

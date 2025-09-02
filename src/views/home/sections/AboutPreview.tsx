@@ -1,13 +1,13 @@
-// src/views/home/sections/AboutPreview.jsx
-import { Container, Row, Col, Button } from 'solid-bootstrap';
+// src/views/home/sections/AboutPreview.tsx
+import { Component } from 'solid-js';
+import { Container, Row, Col } from 'solid-bootstrap';
 import { A } from '@solidjs/router';
 import { FiArrowRight } from 'solid-icons/fi';
 import './AboutPreview.css';
-
-// TODO: Replace with a high-quality portrait of yourself
 import authorPortrait from '../../../assets/images/avatars/img-8.jpg';
 
-const AboutPreview = () => {
+const AboutPreview: Component = () => {
+  // ... component JSX remains the same
   return (
     <section id="about-preview" class="py-6 position-relative bg-light">
       <Container>

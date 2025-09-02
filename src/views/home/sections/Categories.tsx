@@ -1,10 +1,10 @@
-// src/views/home/sections/Categories.jsx
+// src/views/home/sections/Categories.tsx
+import { Component, For } from 'solid-js';
 import { Container, Row, Col } from 'solid-bootstrap';
-import { For } from 'solid-js';
 import CategoryCard from '../../../components/blog/CategoryCard';
-import { categories } from '../../../data/mockCategories';
+import { categories } from '../../../data/mockCategories'; // Correct, extension-less import
 
-const Categories = () => {
+const Categories: Component = () => {
   return (
     <section id="categories" class="py-6 position-relative">
       <Container>

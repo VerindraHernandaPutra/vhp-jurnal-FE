@@ -1,16 +1,17 @@
-// src/views/home/sections/FeaturedPost.jsx
-import { Container, Row, Col, Button } from 'solid-bootstrap';
+// src/views/home/sections/FeaturedPost.tsx
+import { Component } from 'solid-js';
+import { Container, Row, Col } from 'solid-bootstrap';
 import { A } from '@solidjs/router';
-import { latestPosts } from '../../../data/mockPosts';
+import { allPosts } from '../../../data/mockAllPosts'; // CORRECTED: Import 'allPosts'
 import { FiArrowRight } from 'solid-icons/fi';
 import './FeaturedPost.css';
 
-const FeaturedPost = () => {
-  // Find the featured post from our data
-  const featuredPost = latestPosts.find(post => post.isFeatured);
+const FeaturedPost: Component = () => {
+  // Use 'allPosts' to find the featured post
+  const featuredPost = allPosts.find(post => post.isFeatured);
 
   if (!featuredPost) {
-    return null; // Don't render anything if no post is featured
+    return null;
   }
 
   return (
@@ -30,7 +31,6 @@ const FeaturedPost = () => {
                     <span class="badge rounded-pill badge-soft-danger px-2 py-1 mb-3">Featured Post</span>
                     <h1 class="display-5 fw-semibold mb-3">{featuredPost.title}</h1>
                     <p class="text-muted">{featuredPost.excerpt}</p>
-                    
                     <div class="d-flex align-items-center mt-4">
                       <img src={featuredPost.author.image} alt={featuredPost.author.name} class="avatar avatar-sm rounded-circle me-3" />
                       <div>
@@ -40,7 +40,6 @@ const FeaturedPost = () => {
                         </p>
                       </div>
                     </div>
-
                      <A href={featuredPost.url} class="btn btn-primary mt-4">
                         Read Full Article <FiArrowRight class="ms-1 icon-xxs" />
                      </A>

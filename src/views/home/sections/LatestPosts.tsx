@@ -1,10 +1,10 @@
-// src/views/home/sections/LatestPosts.jsx
+// src/views/home/sections/LatestPosts.tsx
+import { Component, For } from 'solid-js';
 import { Container, Row, Col } from 'solid-bootstrap';
-import { For } from 'solid-js';
 import PostCard from '../../../components/blog/PostCard';
-import { latestPosts } from '../../../data/mockPosts';
+import { allPosts } from '../../../data/mockAllPosts'; // CORRECTED: Import 'allPosts'
 
-const LatestPosts = () => {
+const LatestPosts: Component = () => {
   return (
     <section id="latest-posts" class="py-6 bg-light position-relative">
       <div class="divider top d-none d-sm-block"></div>
@@ -19,7 +19,7 @@ const LatestPosts = () => {
           </Col>
         </Row>
         <Row class="mt-5">
-          <For each={latestPosts}>
+          <For each={allPosts}>
             {(post, index) => (
               <Col lg={4} md={6} class="mb-4">
                 <PostCard post={post} aosDelay={index() * 100} />

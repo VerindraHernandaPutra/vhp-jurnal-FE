@@ -1,4 +1,5 @@
-// src/views/home/sections/Footer.jsx
+// src/views/home/sections/Footer.tsx
+import { Component } from 'solid-js';
 import { Col, Container, Row } from 'solid-bootstrap';
 import { A } from '@solidjs/router';
 import { FiTwitter, FiLinkedin, FiGithub } from 'solid-icons/fi';
@@ -8,19 +9,19 @@ import './Footer.css';
 const socialLinks = [
   {
     icon: FiTwitter,
-    url: '#', // TODO: Add your Twitter URL
+    url: '#',
   },
   {
     icon: FiLinkedin,
-    url: '#', // TODO: Add your LinkedIn URL
+    url: '#',
   },
   {
     icon: FiGithub,
-    url: '#', // TODO: Add your GitHub URL
+    url: '#',
   },
 ];
 
-const Footer = () => {
+const Footer: Component = () => {
   return (
     <footer class="footer-section bg-light pt-5 pb-4 position-relative">
       <Container>
@@ -50,7 +51,8 @@ const Footer = () => {
             </div>
 
             <p class="mt-4 fs-14">
-              &copy; {currentYear()} Verindra HP. All rights reserved.
+              {/* CORRECTED: Removed parentheses from currentYear */}
+              &copy; {currentYear} Verindra HP. All rights reserved.
             </p>
           </Col>
         </Row>

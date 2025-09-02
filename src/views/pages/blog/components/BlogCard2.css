@@ -1,0 +1,19 @@
+/* src/views/pages/blog/components/BlogCard2.css */
+.card .card-title a {
+  text-decoration: none;
+  color: inherit;
+  transition: color 0.2s ease;
+}
+
+.card:hover .card-title a {
+  color: var(--bs-primary);
+}
+
+.lift {
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.lift:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.1) !important;
+}

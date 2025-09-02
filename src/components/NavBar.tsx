@@ -1,83 +1,40 @@
-import { Container, Dropdown, Form, Nav, Navbar as BSNavbar, Button } from "solid-bootstrap";
+// src/components/NavBar.tsx
+import { Container, Nav, Navbar as BSNavbar } from "solid-bootstrap";
 import { A, useLocation } from "@solidjs/router";
 import { menuItems } from "@/helpers/data";
-import { FaSolidChevronDown } from "solid-icons/fa";
-import { MenuItemType } from "@/types/layout";
-import { createEffect, createSignal, For, onCleanup, onMount } from "solid-js";
+import { createSignal, For, onCleanup, onMount, Component } from "solid-js";
 import LogoBox from "@/components/LogoBox";
-import { Icon } from "@iconify-icon/solid";
-import { findAllParent, findMenuItem, getMenuItemFromURL } from "@/helpers/menu";
-import { basePath } from "@/helpers";
-import { useAuth } from "@/stores/auth";
 
-type PropsType = {
-  showSearch?: boolean;
+// A simplified type for our new, flat menu structure
+type MenuItem = {
+  key: string;
+  label: string;
+  url: string;
+};
+
+// Props for the main NavBar component
+type NavBarProps = {
   variant?: "light" | "dark";
   linkContainerClass?: string;
 };
 
-type SubMenus = {
-  item: MenuItemType;
-  activeMenuItems: string[];
-  level?: number;
+// Props for the MenuItemLink sub-component
+type MenuItemLinkProps = {
+  item: MenuItem;
 };
 
-const MenuItemWithChildren = ({ item, activeMenuItems, level }: SubMenus) => {
-  const [active, setActive] = createSignal<boolean>(activeMenuItems.includes(item.key));
-  createEffect(() => setActive(activeMenuItems.includes(item.key)));
+const MenuItemLink: Component<MenuItemLinkProps> = (props) => {
+  const location = useLocation();
+  const isActive = () => location.pathname === props.item.url;
 
   return (
-    <Dropdown>
-      <Dropdown.Toggle as={Nav.Link} variant="link" active={active()}>
-        <div class="d-flex justify-content-between align-items-center">
-          {item.label}
-          <FaSolidChevronDown size={10} class="d-inline-block icon-xxs ms-2 mt-lg-0 mt-1" />
-        </div>
-      </Dropdown.Toggle>
-
-      <Dropdown.Menu
-        class={`${item.menuSize === "lg" && "dropdown-menu-lg"} ${level && level > 1 ? "dropdown-submenu" : ""}`}
-      >
-        <For each={item.children}>
-          {(child) =>
-            child.children ? (
-              <MenuItemWithChildren item={child} activeMenuItems={activeMenuItems} level={2} />
-            ) : (
-              <MenuItemLink item={child} activeMenuItems={activeMenuItems} level={2} />
-            )
-          }
-        </For>
-      </Dropdown.Menu>
-    </Dropdown>
-  );
-};
-
-const MenuItemLink = ({ item, activeMenuItems }: SubMenus) => {
-  const [active, setActive] = createSignal<boolean>(activeMenuItems.includes(item.key));
-  createEffect(() => setActive(activeMenuItems.includes(item.key)));
-
-  return (
-    <Nav.Link href={basePath + item.url} active={active()}>
-      <div class="d-flex align-items-center">
-        {item.icon && (
-          <span
-            class={`bg-soft-${item.variant ?? "primary"} text-${item.variant ?? "primary"} avatar avatar-xs shadow rounded icon icon-with-bg icon-xs me-3 flex-shrink-0`}
-          >
-            <Icon icon={item.icon} style="font-size:20px" />
-          </span>
-        )}
-        <div class="flex-grow-1">{item.label}</div>
-      </div>
+    <Nav.Link as={A} href={props.item.url} active={isActive()}>
+      {props.item.label}
     </Nav.Link>
   );
 };
 
-const NavBar = ({ showSearch, variant, linkContainerClass }: PropsType) => {
-  const location = useLocation();
-  const [activeMenuItems, setActiveMenuItems] = createSignal<string[]>([]);
-  const { user, logout } = useAuth();
-
-  // Transparent at top, solid after you scroll a bit
+const NavBar: Component<NavBarProps> = (props) => {
   const [isTop, setIsTop] = createSignal(true);
   const onScroll = () => setIsTop(window.scrollY <= 10);
 
@@ -87,70 +44,24 @@ const NavBar = ({ showSearch, variant, linkContainerClass }: PropsType) => {
   });
   onCleanup(() => window.removeEventListener("scroll", onScroll));
 
-  // Sync active menu
-  createEffect(() => {
-    const matching = getMenuItemFromURL(menuItems, basePath + location.pathname);
-    if (matching) {
-      const mt = findMenuItem(menuItems, matching.key);
-      if (mt) setActiveMenuItems([mt.key, ...findAllParent(menuItems, mt)]);
-    }
-  });
-
-  // Apply the bg state class; DO NOT fix position (per your request)
-  const navbarClass =
+  const navbarClass = () => 
     `topnav-menu navbar-expand-lg ${isTop() ? "navbar-transparent" : "navbar-solid"}`;
 
   return (
     <header>
-      <BSNavbar variant={variant ?? "light"} expand="lg" class={navbarClass}>
+      <BSNavbar variant={props.variant ?? "light"} expand="lg" class={navbarClass()}>
         <Container>
           <BSNavbar.Brand class="logo" as={A} href="/">
             <LogoBox isInNavbar={true} />
           </BSNavbar.Brand>
 
-          <BSNavbar.Toggle aria-controls="topnav-menu-content">
-            <span class="navbar-toggler-icon"></span>
-          </BSNavbar.Toggle>
+          <BSNavbar.Toggle aria-controls="topnav-menu-content" />
 
           <BSNavbar.Collapse id="topnav-menu-content">
-            {showSearch && (
-              <Nav class="align-items-lg-center d-flex me-auto">
-                <li>
-                  <Form class="form-inline d-none d-sm-flex">
-                    <Form.Group>
-                      <Form.Control type="text" placeholder="What are you looking for?" />
-                    </Form.Group>
-                  </Form>
-                </li>
-              </Nav>
-            )}
-
-            <Nav class={`align-items-lg-center ms-auto navbar-${variant ?? "light"} ${linkContainerClass || ""}`}>
-              {activeMenuItems().length > 0 && (
-                <For each={menuItems}>
-                  {(item) =>
-                    item.children ? (
-                      <MenuItemWithChildren item={item} activeMenuItems={activeMenuItems()} />
-                    ) : (
-                      <MenuItemLink item={item} activeMenuItems={activeMenuItems()} />
-                    )
-                  }
-                </For>
-              )}
-            </Nav>
-
-            {/* Auth Section */}
-            <Nav class="align-items-lg-center d-flex ms-3">
-              {user() ? (
-                <>
-                  <span class="me-3">Hello, {user()!.name}</span>
-                  <Button variant="outline-danger" size="sm" onClick={logout}>
-                    Logout
-                  </Button>
-                </>
-              ) : (
-                <></>
-              )}
+            <Nav class={`align-items-lg-center ${props.linkContainerClass || ""}`}>
+              <For each={menuItems}>
+                {(item) => <MenuItemLink item={item as MenuItem} />}
+              </For>
             </Nav>
           </BSNavbar.Collapse>
         </Container>

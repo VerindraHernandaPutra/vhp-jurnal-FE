@@ -1,7 +1,16 @@
-// src/data/mockCategories.js
+// src/data/mockCategories.ts
+import { IconTypes } from 'solid-icons';
 import { FiEdit3, FiTerminal, FiHeart, FiGift } from 'solid-icons/fi';
 
-export const categories = [
+export type CategoryType = {
+  icon: IconTypes;
+  slug: string;
+  name: string;
+  description: string;
+  variant: 'primary' | 'danger' | 'success' | 'info';
+};
+
+export const categories: CategoryType[] = [
   {
     icon: FiEdit3,
     slug: 'life-notes',
