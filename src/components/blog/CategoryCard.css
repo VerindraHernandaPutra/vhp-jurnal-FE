@@ -1,0 +1,12 @@
+/* src/components/blog/CategoryCard.css */
+
+.category-card .card-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.category-card:hover h4 {
+  color: var(--bs-primary);
+}

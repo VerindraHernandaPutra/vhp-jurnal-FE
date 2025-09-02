@@ -1,0 +1,30 @@
+/* src/views/home/sections/Footer.css */
+
+.footer-nav a {
+  color: var(--bs-gray-600);
+  font-weight: 500;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.footer-nav a:hover {
+  color: var(--bs-primary);
+}
+
+.social-links .social-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin: 0 8px;
+  color: var(--bs-gray-700);
+  background-color: var(--bs-gray-200);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.social-links .social-icon:hover {
+  background-color: var(--bs-primary);
+  color: white;
+}

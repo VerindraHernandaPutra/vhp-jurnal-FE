@@ -1,0 +1,19 @@
+/* src/components/blog/PostCard.css */
+
+.card-link {
+  text-decoration: none;
+  color: inherit;
+}
+
+.card-link:hover .card-title {
+  color: var(--bs-primary);
+}
+
+.lift {
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.lift:hover {
+  transform: translateY(-5px) scale(1.02);
+  box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.175) !important;
+}

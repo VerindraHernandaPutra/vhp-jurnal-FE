@@ -1,0 +1,7 @@
+/* src/views/home/sections/AboutPreview.css */
+
+.author-portrait img {
+  max-width: 350px;
+  margin: 0 auto;
+  display: block;
+}

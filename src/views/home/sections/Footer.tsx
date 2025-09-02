@@ -1,61 +1,62 @@
-import {For} from "solid-js";
-import {Col, Container, Row} from "solid-bootstrap";
-import LogoBox from "@/components/LogoBox";
-import {appName, author, authorContact, currentYear,basePath} from "@/helpers";
-import {LinkType} from "@/types/layout";
+// src/views/home/sections/Footer.jsx
+import { Col, Container, Row } from 'solid-bootstrap';
+import { A } from '@solidjs/router';
+import { FiTwitter, FiLinkedin, FiGithub } from 'solid-icons/fi';
+import { currentYear } from '@/helpers';
+import './Footer.css';
 
-const footerLinks: LinkType[] = [
-    {
-        label: 'About',
-        url: ''
-    },
-    {
-        label: 'Support',
-        url: ''
-    },
-    {
-        label: 'Version',
-        url: '',
-        badge: {
-            text: 'v1.0',
-            variant: 'info'
-        }
-    }
-]
+const socialLinks = [
+  {
+    icon: FiTwitter,
+    url: '#', // TODO: Add your Twitter URL
+  },
+  {
+    icon: FiLinkedin,
+    url: '#', // TODO: Add your LinkedIn URL
+  },
+  {
+    icon: FiGithub,
+    url: '#', // TODO: Add your GitHub URL
+  },
+];
 
 const Footer = () => {
-    return (
-        <section class="section pt-lg-6 pt-3 pb-3 position-relative" data-aos="fade-up">
-            <Container>
-                <Row class="align-items-center">
-                    <Col class="text-center">
-                        <ul class="list-inline list-with-separator">
-                            <For each={footerLinks}>
-                                {
-                                    (link) =>
-                                        <li class="list-inline-item me-0">
-                                            <a href={basePath + link.url}>
-                                                {link.label}
-                                                {
-                                                    link.badge &&
-                                                    <span
-                                                        class={`align-middle badge badge-soft-${link.badge.variant} rounded-pill px-2 py-1 ms-1`}>{link.badge.text}</span>
-                                                }
-                                            </a>
-                                        </li>
-                                }
-                            </For>
-                        </ul>
-                        <p class="mt-2 fs-14">
-                            {currentYear}
-                            © {appName}. All rights reserved. Crafted by <a href={authorContact}>{author}</a>
-                        </p>
-                        <LogoBox className="mt-2 mb-4"/>
-                    </Col>
-                </Row>
-            </Container>
-        </section>
-    )
-}
+  return (
+    <footer class="footer-section bg-light pt-5 pb-4 position-relative">
+      <Container>
+        <Row class="justify-content-center text-center">
+          <Col lg={8}>
+            <ul class="list-inline list-with-separator footer-nav">
+              <li class="list-inline-item me-0">
+                <A href="/">Home</A>
+              </li>
+              <li class="list-inline-item me-0">
+                <A href="/blog">Blog</A>
+              </li>
+              <li class="list-inline-item me-0">
+                <A href="/about">About</A>
+              </li>
+            </ul>
 
-export default Footer
+            <div class="social-links mt-4">
+              {socialLinks.map(link => {
+                const Icon = link.icon;
+                return (
+                  <a href={link.url} target="_blank" rel="noopener noreferrer" class="social-icon">
+                    <Icon size={20} />
+                  </a>
+                );
+              })}
+            </div>
+
+            <p class="mt-4 fs-14">
+              &copy; {currentYear()} Verindra HP. All rights reserved.
+            </p>
+          </Col>
+        </Row>
+      </Container>
+    </footer>
+  );
+};
+
+export default Footer;
