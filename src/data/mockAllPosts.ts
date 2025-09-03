@@ -23,6 +23,8 @@ export type BlogType = {
   };
   url: string;
   isFeatured?: boolean;
+  tags?: string[];
+  isPinned?: boolean;
 };
 
 // Strongly-type our array of posts
@@ -38,7 +40,8 @@ export const allPosts: BlogType[] = [
     excerpt: 'Discover why SolidJS is gaining traction and how its fine-grained reactivity is changing the game for web development...',
     author: { name: 'Verindra HP', image: authorImage },
     url: '/blog/the-future-of-reactive-ui',
-    isFeatured: true,
+    isPinned: true,
+    tags: ['SolidJS', 'Frontend', 'JavaScript'],
   },
   {
     id: 2,
@@ -51,6 +54,8 @@ export const allPosts: BlogType[] = [
     excerpt: 'In a world of constant notifications, here are the techniques and tools I use to maintain focus and deep work...',
     author: { name: 'Verindra HP', image: authorImage },
     url: '/blog/digital-workspace-productivity',
+    isPinned: true,
+    tags: ['Productivity Hacks', 'Lifestyle'],
   },
   {
     id: 3,
@@ -63,6 +68,8 @@ export const allPosts: BlogType[] = [
     excerpt: 'Beyond fleeting trends, these core design principles are essential for creating interfaces that are both beautiful and intuitive...',
     author: { name: 'Verindra HP', image: authorImage },
     url: '/blog/timeless-ui-ux-principles',
+    isPinned: true,
+    tags: ['UI Design', 'UX', 'Principles'],
   },
   {
     id: 4,
@@ -75,6 +82,8 @@ export const allPosts: BlogType[] = [
     excerpt: 'A personal reflection on the challenges and rewards of learning to code and changing careers...',
     author: { name: 'Verindra HP', image: authorImage },
     url: '/blog/my-journey-into-software',
+    isPinned: false,
+    tags: ['UI Design', 'UX', 'Principles'],
   },
   {
     id: 5,
@@ -87,6 +96,8 @@ export const allPosts: BlogType[] = [
     excerpt: 'A practical guide for when to use Grid and when to use Flexbox to build powerful, responsive layouts...',
     author: { name: 'Verindra HP', image: authorImage },
     url: '/blog/css-grid-vs-flexbox',
+    isPinned: false,
+    tags: ['UI Design', 'UX', 'Principles'],
   },
   {
     id: 6,
@@ -99,6 +110,8 @@ export const allPosts: BlogType[] = [
     excerpt: 'How stepping away from the screen can be the best way to solve complex creative problems...',
     author: { name: 'Verindra HP', image: authorImage },
     url: '/blog/finding-creativity',
+    isPinned: false,
+    tags: ['Creativity', 'Inspiration'],
   },
 ];
 

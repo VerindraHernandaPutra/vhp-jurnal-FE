@@ -1,34 +1,29 @@
 // src/components/NavBar.tsx
+import { Component } from 'solid-js';
 import { Container, Nav, Navbar as BSNavbar } from "solid-bootstrap";
 import { A, useLocation } from "@solidjs/router";
 import { menuItems } from "@/helpers/data";
-import { createSignal, For, onCleanup, onMount, Component } from "solid-js";
+import { createSignal, For, onCleanup, onMount } from "solid-js";
 import LogoBox from "@/components/LogoBox";
+import './NavBar.css';
 
-// A simplified type for our new, flat menu structure
-type MenuItem = {
-  key: string;
-  label: string;
-  url: string;
-};
-
-// Props for the main NavBar component
-type NavBarProps = {
-  variant?: "light" | "dark";
-  linkContainerClass?: string;
-};
-
-// Props for the MenuItemLink sub-component
-type MenuItemLinkProps = {
-  item: MenuItem;
-};
+type MenuItem = { key: string; label: string; url: string; };
+type NavBarProps = { variant?: "light" | "dark"; }; // Removed linkContainerClass
+type MenuItemLinkProps = { item: MenuItem; };
 
 const MenuItemLink: Component<MenuItemLinkProps> = (props) => {
   const location = useLocation();
-  const isActive = () => location.pathname === props.item.url;
+
+  const isActive = () => {
+    if (props.item.url === '/') {
+      return location.pathname === '/';
+    }
+    return location.pathname.startsWith(props.item.url);
+  };
 
   return (
-    <Nav.Link as={A} href={props.item.url} active={isActive()}>
+    // THE FIX: Add the `end` prop to the link for the homepage
+    <Nav.Link as={A} href={props.item.url} active={isActive()} end={props.item.url === '/'}>
       {props.item.label}
     </Nav.Link>
   );
@@ -43,7 +38,7 @@ const NavBar: Component<NavBarProps> = (props) => {
     window.addEventListener("scroll", onScroll, { passive: true });
   });
   onCleanup(() => window.removeEventListener("scroll", onScroll));
-
+  
   const navbarClass = () => 
     `topnav-menu navbar-expand-lg ${isTop() ? "navbar-transparent" : "navbar-solid"}`;
 
@@ -54,11 +49,10 @@ const NavBar: Component<NavBarProps> = (props) => {
           <BSNavbar.Brand class="logo" as={A} href="/">
             <LogoBox isInNavbar={true} />
           </BSNavbar.Brand>
-
           <BSNavbar.Toggle aria-controls="topnav-menu-content" />
-
           <BSNavbar.Collapse id="topnav-menu-content">
-            <Nav class={`align-items-lg-center ${props.linkContainerClass || ""}`}>
+            {/* THE FIX: Added mx-auto to center the nav links */}
+            <Nav class="align-items-lg-center mx-auto">
               <For each={menuItems}>
                 {(item) => <MenuItemLink item={item as MenuItem} />}
               </For>

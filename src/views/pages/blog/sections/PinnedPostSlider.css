@@ -1,0 +1,20 @@
+/* src/views/pages/blog/sections/PinnedPostSlider.css */
+
+.pinned-slider-section .swiper-slide {
+  /* Ensures cards in the slider can have equal height */
+  height: auto; 
+  display: flex;
+}
+
+.pinned-slider-section .swiper-pagination {
+  position: static; /* Position the dots below the slider */
+  margin-top: 2rem;
+}
+
+.pinned-slider-section .swiper-pagination-bullet {
+  background-color: var(--bs-gray-400);
+}
+
+.pinned-slider-section .swiper-pagination-bullet-active {
+  background-color: var(--bs-primary);
+}

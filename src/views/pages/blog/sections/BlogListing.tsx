@@ -1,32 +1,58 @@
 // src/views/pages/blog/sections/BlogListing.tsx
-import { createSignal, For, Show, Component } from 'solid-js';
+import { For, Show, Component } from 'solid-js';
 import { Container, Row, Col } from 'solid-bootstrap';
 import { allPosts, categories } from '../../../../data/mockAllPosts';
-import BlogCard1 from '../components/BlogCard1';
 import BlogCard2 from '../components/BlogCard2';
+import PinnedPostSlider from './PinnedPostSlider';
 import './BlogListing.css';
 
-const BlogListing: Component = () => {
-  const [activeCategory, setActiveCategory] = createSignal('All');
+type BlogListingProps = {
+  searchQuery: string;
+  activeCategory: string;
+  onCategoryChange: (category: string) => void;
+};
+
+const BlogListing: Component<BlogListingProps> = (props) => {
+  const regularPosts = allPosts.filter(p => !p.isPinned);
 
   const filteredPosts = () => {
-    if (activeCategory() === 'All') {
-      return allPosts;
+    let posts = regularPosts;
+
+    // 1. Filter by active category
+    if (props.activeCategory !== 'All') {
+      posts = posts.filter(post => post.category === props.activeCategory);
     }
-    return allPosts.filter(post => post.category === activeCategory());
+
+    // 2. Filter by search query
+    const query = props.searchQuery.toLowerCase();
+    if (query) {
+      posts = posts.filter(post =>
+        post.title.toLowerCase().includes(query) ||
+        post.excerpt.toLowerCase().includes(query)
+      );
+    }
+
+    return posts;
   };
 
   return (
     <section class="py-6 position-relative">
+      <PinnedPostSlider />
       <Container>
-        <Row class="justify-content-center">
-          <Col lg={10} class="text-center">
+        <Row class="justify-content-center mt-5">
+          <Col lg={8} class="text-center" data-aos="fade-up">
+            <h2 class="display-5 fw-semibold">All Posts</h2>
+            <p class="text-muted">Browse all articles by category below.</p>
+          </Col>
+        </Row>
+        <Row class="justify-content-center mt-4">
+          <Col lg={10} class="text-center" data-aos="fade-up">
             <div class="filter-menu">
               <For each={categories}>
                 {(category) => (
                   <button
-                    class={`filter-menu-item ${activeCategory() === category ? 'active' : ''}`}
-                    onClick={() => setActiveCategory(category)}
+                    class={`filter-menu-item ${props.activeCategory === category ? 'active' : ''}`}
+                    onClick={() => props.onCategoryChange(category)}
                   >
                     {category}
                   </button>
@@ -41,20 +67,14 @@ const BlogListing: Component = () => {
             when={filteredPosts().length > 0}
             fallback={
               <Col class="text-center py-5">
-                <h4 class="text-muted">No posts found in this category.</h4>
+                <h4 class="text-muted">No posts found. Try a different search or category.</h4>
               </Col>
             }
           >
-            {/* Featured Post (first in the list) */}
-            <Col lg={12} class="mb-5" data-aos="fade-up">
-              <BlogCard1 blog={filteredPosts()[0]} />
-            </Col>
-
-            {/* Regular Post Grid (rest of the list) */}
-            <For each={filteredPosts().slice(1)}>
+            <For each={filteredPosts()}>
               {(post, index) => (
                 <Col lg={4} md={6} class="mb-4">
-                  <div class="h-100" data-aos="fade-up" data-aos-delay={(index() + 1) * 100}>
+                  <div class="h-100" data-aos="fade-up" data-aos-delay={(index() % 3) * 100}>
                     <BlogCard2 blog={post} />
                   </div>
                 </Col>
