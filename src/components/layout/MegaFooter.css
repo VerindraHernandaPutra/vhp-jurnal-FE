@@ -1,0 +1,8 @@
+/* src/components/layout/MegaFooter.css */
+.mega-footer { border-top: 1px solid var(--bs-gray-200); }
+.footer-links h5 { font-size: 0.9rem; color: var(--bs-gray-700); font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
+.footer-links ul li { margin-bottom: 0.75rem; }
+.footer-links ul li a { color: var(--bs-gray-600); text-decoration: none; transition: color 0.2s ease; }
+.footer-links ul li a:hover { color: var(--bs-primary); }
+.social-links-footer a { color: var(--bs-gray-500); margin-left: 1.25rem; transition: color 0.2s ease; }
+.social-links-footer a:hover { color: var(--bs-primary); }

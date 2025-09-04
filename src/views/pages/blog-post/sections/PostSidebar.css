@@ -1,0 +1,39 @@
+/* src/views/pages/blog-post/sections/PostSidebar.css */
+.sticky-sidebar {
+  position: sticky;
+  top: 100px;
+}
+
+.search-icon {
+  position: absolute;
+  top: 50%;
+  right: 1rem;
+  transform: translateY(-50%);
+  color: var(--bs-gray-500);
+}
+
+.toc-list {
+  padding-left: 0;
+}
+
+.toc-list li a {
+  display: block;
+  padding: 0.5rem 0;
+  color: var(--bs-gray-600);
+  font-weight: 500;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  font-size: 0.9rem;
+}
+
+.toc-list li a:hover {
+  color: var(--bs-primary);
+  transform: translateX(4px);
+}
+
+/* NEW: Style for the icon-only toggle button */
+.sidebar-toggle-btn {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+}

@@ -1,0 +1,10 @@
+/* src/views/pages/blog-post/sections/ArticleBody.css */
+.article-content h2 {
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
+.article-content p {
+  line-height: 1.8;
+  margin-bottom: 1.25rem;
+}
