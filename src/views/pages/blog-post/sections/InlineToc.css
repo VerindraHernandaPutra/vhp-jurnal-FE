@@ -1,0 +1,36 @@
+/* src/views/pages/blog-post/sections/InlineToc.css */
+.toc-wrapper {
+  background-color: var(--bs-light);
+  border-radius: 0.5rem;
+  padding: 1.5rem;
+  margin-top: 1rem; /* Add some space above the TOC box */
+  margin-bottom: 2rem;
+}
+
+.toc-list-inline li a {
+  display: block;
+  padding: 0.4rem 0;
+  color: var(--bs-gray-700);
+  font-weight: 500;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.toc-list-inline li a:hover {
+  color: var(--bs-primary);
+  transform: translateX(4px);
+}
+
+.toc-trigger-btn {
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  background: none;
+  padding: 0;
+  color: var(--bs-primary);
+  margin-bottom: 1rem; /* Add space below the button */
+}
+
+.toc-trigger-btn:hover {
+  text-decoration: underline;
+}

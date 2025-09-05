@@ -1,0 +1,27 @@
+/* src/views/pages/blog-post/sections/PostNavigation.css */
+.post-navigation .author-bio-center {
+    max-width: 300px;
+}
+
+.post-navigation .nav-button {
+    font-weight: 500;
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    border-color: var(--bs-gray-300);
+}
+
+.post-navigation .nav-button:not(:disabled):hover {
+    transform: translateY(-3px);
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+    border-color: var(--bs-gray-400);
+}
+
+.post-navigation .nav-button:disabled {
+    opacity: 0.5;
+}
+
+/* Styles for the hover popover */
+.nav-popover.popover {
+    --bs-popover-max-width: 275px;
+    --bs-popover-border-color: var(--bs-border-color-translucent);
+    --bs-popover-box-shadow: var(--bs-box-shadow);
+}

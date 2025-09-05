@@ -1,6 +1,7 @@
 // src/views/pages/blog-post/sections/ArticleBody.tsx
 import { Component, onMount } from 'solid-js';
 import { BlogType } from '@/data/mockAllPosts';
+import './ArticleBody.css'; // Import the new CSS file
 
 type Props = {
   post: BlogType;
@@ -9,16 +10,13 @@ type Props = {
 
 const ArticleBody: Component<Props> = (props) => {
   let contentRef: HTMLDivElement | undefined;
-
   onMount(() => {
-    // Find all h2 tags in the content and pass them up to the parent
     const headings = Array.from(contentRef?.querySelectorAll('h2') || []).map(h => ({
       id: h.id,
       text: h.textContent || '',
     }));
     props.setHeadings(headings);
   });
-
   return (
     <div ref={contentRef} class="article-content" innerHTML={props.post.content || ''}></div>
   );

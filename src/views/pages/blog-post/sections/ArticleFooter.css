@@ -1,0 +1,9 @@
+/* src/views/pages/blog-post/sections/ArticleFooter.css */
+.share-links a {
+  font-size: 1.25rem;
+  color: var(--bs-gray-500);
+  transition: color 0.2s ease;
+}
+.share-links a:hover {
+  color: var(--bs-primary);
+}

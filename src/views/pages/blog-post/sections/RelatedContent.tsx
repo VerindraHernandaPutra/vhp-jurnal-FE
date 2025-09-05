@@ -12,7 +12,7 @@ const RelatedContent: Component<{ currentPost: BlogType }> = (props) => {
 
   return (
     <section class="py-6 bg-light">
-      <Container>
+      <Container class="container-xxl">
         <Row class="align-items-center mb-4">
           <Col>
             <h2 class="fw-semibold mb-0">Related content</h2>
